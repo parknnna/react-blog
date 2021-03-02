@@ -1,0 +1,15 @@
+spring:
+  profiles:
+      include: API-KEY
+  datasource:
+    url: jdbc:mariadb://parknnna.caou9qnjfgop.ap-northeast-2.rds.amazonaws.com:3306/blog
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: parknnna
+    password: ${secret}
+  jpa:
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: false
+    show-sql: true
+mybatis:
+  config-location: classpath:mybatis-config.xml
