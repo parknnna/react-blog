@@ -33,16 +33,17 @@ class User extends React.Component {
   };
 
   submit = () =>{
-    axios.delete(`http://localhost:8080/board`,{
-      data: {
-        no: this.props.no,
-        name: this.state.name,
-        pw: this.state.pw
-      }
+    axios({
+        method:"POST",
+        url: 'http://localhost:8080/board2',
+        data:{
+            no: this.props.no,
+            name: this.state.name,
+            pw: this.state.pw
+        }
     }).then((Response)=>{
       if(Number(Response.data)===1){
-        alert("삭제 되었습니다.")
-        document.getElementById("delete").click()
+        document.getElementById("update").click()
       }else if (Number(Response.data)===-1){
         alert("이름이 다릅니다")
       }else{
@@ -58,12 +59,12 @@ class User extends React.Component {
       <>
       <hidden>
         <Button>
-          <Link to="/admin/extended-tables" id="delete">
+          <Link to={`/admin/boardUpdateForm/${this.props.no}`} id="update">
           </Link>
         </Button>
       </hidden>
       <Dialog open={this.props.open} contentStyle={{width: "100%", maxWidth: "none"}} onClose={()=>this.close()} >
-        <DialogTitle>게시글 삭제</DialogTitle>
+        <DialogTitle>게시글 수정</DialogTitle>
           <DialogContent>
             <CFormGroup row>
               <CCol md="3">
@@ -78,12 +79,12 @@ class User extends React.Component {
                 <CLabel htmlFor="start_date">PassWord</CLabel>
               </CCol>
               <CCol xs="12" md="9">
-                <input type="password" name="pw" placeholder="비밀 번호" value={this.state.pw} onChange={this.onChange} />
+                <input type="password" name="pw" id="pw" placeholder="비밀 번호" value={this.state.pw} onChange={this.onChange} />
               </CCol>
             </CFormGroup>
           </DialogContent>
           <DialogActions>
-            <Button variant="contained" color="primary" onClick={this.submit}>삭제</Button>
+            <Button variant="contained" color="primary" onClick={this.submit}>수정</Button>
             <Button variant="outlined" color="primary" onClick={()=>this.close()}>닫기</Button>
           </DialogActions>
       </Dialog>

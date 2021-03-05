@@ -1,23 +1,7 @@
-/*!
 
-=========================================================
-* Now UI Dashboard React - v1.4.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/now-ui-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { Link } from 'react-router-dom';
-// reactstrap components
+
 import {
   Card,
   CardBody,
@@ -26,10 +10,8 @@ import {
   Table,
   Row,
   Col,
-  
 } from "reactstrap";
 
-// core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import axios from 'axios';
 import '../router'
@@ -40,6 +22,7 @@ class RegularTables extends React.Component {
     super(props);
     this.state = {
       body: null,
+      page: []
     };
   }
 
@@ -47,11 +30,42 @@ class RegularTables extends React.Component {
     this.boardGet();
   }
 
+  pageChange(selPage){ //페이지 이동 클릭
+    const {page}=this.state;
+    this.movePage(selPage,page.cntPerPage)
+  }
+  nextpage(){ //다음 페이지
+    const {page}=this.state;
+    this.movePage(page.endPage+1,page.cntPerPage)
+  }
+  prevpage(){ //이전 페이지
+    const {page}=this.state;
+    this.movePage(page.startPage-1,page.cntPerPage)
+  }
+  movePage(nowpage,perpage){ //페이지 이동
+    axios.get("http://localhost:8080/board/"+nowpage+"/"+perpage)
+        .then(res => {
+            this.setState({
+              body: res.data.board,
+              page: res.data.page
+            })
+        })
+        .catch(res => console.log(res))
+  }
+  makeMap(start,end){ //배열 만드는 함수
+    var result=[];
+    for(var i=start;i<=end;i++){
+      result.push(i);
+    }
+    return result;
+  }
+
   boardGet = () => {
     axios.get('http://localhost:8080/board/1/10').then((Response)=>{
       console.log(Response)
       this.setState({
         body: Response.data.board,
+        page: Response.data.page
       })
     }).catch((Error)=>{
         console.log(Error);
@@ -60,15 +74,26 @@ class RegularTables extends React.Component {
 
   render() {
     var {body} = this.state
+    const { page } = this.state;
     return (
       <>
-        <PanelHeader size="sm" />
+        <PanelHeader
+          content={
+            <div className="header text-center">
+              <h2 className="title">notice board</h2>
+            </div>
+          }
+        />
         <div className="content">
           <Row>
             <Col xs={12}>
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h4">Simple Table</CardTitle>
+                  
+                  <div style={{textAlign: "right"}}>
+                    <Link to="boardInsert" style={{textAlign:"right"}}>글쓰기</Link>
+                  </div>
+
                 </CardHeader>
                 <CardBody>
                   <Table responsive>
@@ -105,6 +130,20 @@ class RegularTables extends React.Component {
                       })}
                     </tbody>
                   </Table>
+                  <nav aria-label="pagination">
+                    <ul class="pagination justify-content-center">
+                      {page.startPage !== 1 ?
+                        <li onClick={() => this.prevpage()} class="page-item disabled"><a class="disabled page-link" aria-label="Go to previous page" aria-disabled="true">‹</a></li> : ""} {/*이전 */}
+                      {this.makeMap(page.startPage,page.endPage).map((i) => {
+                        if(page.nowPage===i){
+                          return(<li class="active page-item"><a class="page-link" aria-label="Current page 1">{i}</a></li>);
+                        }else{
+                          return(<li onClick={() => this.pageChange(i)} class=" page-item"><a class="page-link" aria-label="Go to page 2">{i}</a></li>)
+                        }
+                      })}
+                      {page.endPage !== page.lastPage ? <li class="page-item" onClick={() => this.nextpage()}><a class="page-link" aria-label="Go to next page" aria-disabled="false">›</a></li> : ''} {/*다음 */}
+                    </ul>
+                  </nav>
                 </CardBody>
               </Card>
             </Col>

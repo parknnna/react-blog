@@ -22,6 +22,10 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import board from "components/Board/BoardGet";
 import boardDelte from "components/Board/BoardDelete";
+import tableList from "views/TableList"
+import boardInsert from "components/Board/BoardInsert"
+import boardUpdateForm from "components/Board/BoardUpdateForm"
+
 export var dashRoutes = [
   {
     path: "/board/:no",
@@ -34,7 +38,28 @@ export var dashRoutes = [
     name: "boardDelte",
     component: boardDelte,
     layout: "/admin",
-  }
+  },
+  {
+    path: "/extended-tables",
+    name: "Table List",
+    icon: "files_paper",
+    component: tableList,
+    layout: "/admin",
+  },
+  {
+    path: "/boardInsert",
+    name: "boardInsert",
+    icon: "files_paper",
+    component: boardInsert,
+    layout: "/admin",
+  },
+  {
+    path: "/boardUpdateForm/:no",
+    name: "boardUpdateForm",
+    icon: "files_paper",
+    component: boardUpdateForm,
+    layout: "/admin",
+  },
 ];
 
 export function Router (){

@@ -6,6 +6,9 @@ import java.util.*;
 
 import com.parknnna.blog.database.Entity.*;
 import com.parknnna.blog.Service.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 public class BoardController {
@@ -31,11 +34,38 @@ public class BoardController {
         return result;
     }
 
-    @GetMapping("board/{no}")
+    @GetMapping("/board/{no}")
     public HashMap<String,BoardEntity> getBoard(@PathVariable("no") int no){
         HashMap<String, BoardEntity> result = new HashMap<>();
         result.put("board", BoardService.getBoard(no));
 
         return result;
     }
+
+    @DeleteMapping("/board")
+    public int deleteBoard(@RequestBody BoardEntity entity){
+        if(BoardService.selectID(entity)<1) return -1;
+        if(BoardService.selectPW(entity)<1) return -2;
+        return BoardService.deleteBoard(entity);
+    }
+
+    @PostMapping("/board")
+    public int insertBoard(@RequestBody BoardEntity params){
+        int result = BoardService.insertBoard(params);
+        return result;
+    }
+
+    @PutMapping("/board")
+    public int updateBoard(@RequestBody BoardEntity params){
+        int result = BoardService.updateBoard(params);
+        return result;
+    }
+
+    @PostMapping("/board2")
+    public int insertBoard2(@RequestBody BoardEntity entity){
+        if(BoardService.selectID(entity)<1) return -1;
+        if(BoardService.selectPW(entity)<1) return -2;
+        return 1;
+    }
+    
 }

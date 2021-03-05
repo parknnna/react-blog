@@ -28,4 +28,25 @@ public class BoardService {
         BoardEntity result = BoardMapper.getBoard(no);
         return result;
     }
+
+    public int deleteBoard(BoardEntity entity){
+        int result = BoardMapper.deleteBoard(entity);
+        return result;
+    }
+
+    public int selectID(BoardEntity entity){
+        return BoardMapper.selectID(entity);
+    }
+
+    public int selectPW(BoardEntity entity){
+        return BoardMapper.selectPW(entity);
+    }
+
+    public int insertBoard(BoardEntity entity){
+        return BoardMapper.insertBoard(entity);
+    }
+
+    public int updateBoard(BoardEntity entity){
+        return BoardMapper.updateBoard(entity);
+    }
 }

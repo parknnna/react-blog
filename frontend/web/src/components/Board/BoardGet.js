@@ -1,81 +1,96 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 
-import { Card, CardHeader, CardBody, Row, Col  , DropdownMenu, DropdownToggle,UncontrolledDropdown,CardTitle,
+import {Button, Card, CardHeader, CardBody, Row, Col  , DropdownMenu, DropdownToggle,UncontrolledDropdown,CardTitle,
     DropdownItem,} from "reactstrap";
 
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import axios from "axios";
-import { Link } from 'react-router-dom';
 import '../../router'
 import Delete from './BoardDelete'
-class boardget extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          board: null,
-          open: false
-        };
-      }
-    componentDidMount(){
-        this.getBoard();
-    }
+import Update from './BoardUpdate'
 
-    getBoard(){
-        axios.get(`http://localhost:8080/board/`+this.props.match.params.no).then((Response)=>{
-            console.log(Response)
-            this.setState({
-              board: Response.data.board,
+function Board(props){
+    const [inputs, setInputs] = useState({
+        board: "",  
+        open: false,open2:false
+    });
+
+    const goBack = () => {
+        props.history.goBack();
+    };
+
+    const { board, open, open2 } = inputs;
+
+    useEffect(() => {
+        getBoard();
+    },[]);
+
+    const getBoard = () => {
+        axios.get(`http://localhost:8080/board/`+props.match.params.no).then((Response)=>{
+            setInputs({
+                board: Response.data.board,
+                open: open,open2: open
             })
           }).catch((Error)=>{
               console.log(Error);
           })
     }
 
-    close(){
-        this.setState({
-            open: false
-        })
+    const close = () => {
+        setInputs ({
+          open: false,
+          open2: false,
+          board: board
+        });
     }
+      
 
-    render() {
-        return (
-        <>
-            <PanelHeader size="sm" />
-            <div className="content">
-            <Row>
-                <Col md={12}>
-                <Card className="card-chart">
-                    <CardHeader>
-                    <h5 className="card-category">{Object(this.state.board).name} 님의</h5>
-                    <CardTitle tag="h4">{Object(this.state.board).title}</CardTitle>
-                    <UncontrolledDropdown>
-                        <DropdownToggle
-                        className="btn-round btn-outline-default btn-icon"
-                        color="default"
-                        >
-                        <i className="now-ui-icons loader_gear" />
-                        </DropdownToggle>
-                        <DropdownMenu right>
+    return (
+    <>
+        <PanelHeader size="sm" />
+        <div className="content">
+        <Row>
+        <Col xs={12}>
+            <Card className="card-chart">
+                <CardHeader>
+                    <CardTitle tag="h4">{Object(board).title}</CardTitle>
+                    <hr></hr>
+                    <div style={{textAlign:"right"}}>
+                        <h5 className="card-category">작성자 : {Object(board).name}</h5>
+                    </div>
+                <UncontrolledDropdown>
+                    <DropdownToggle
+                    className="btn-round btn-outline-default btn-icon"
+                    color="default"
+                    >
+                    <i className="now-ui-icons loader_gear" />
+                    </DropdownToggle>
+                    <DropdownMenu right>
+                        <section onClick={()=>{setInputs({open2: true, board: board})}}>
                             <DropdownItem>Update data</DropdownItem>
-                            <section onClick={()=>{this.setState({open:true})}}>
-                                <DropdownItem className="text-danger">
-                                    Remove data
-                                </DropdownItem>
-                            </section>
-                        </DropdownMenu>
-                    </UncontrolledDropdown>
-                    </CardHeader>
-                    <CardBody>
-                        {Object(this.state.board).contents}
-                    </CardBody>
-                </Card>
-                </Col>
-            </Row>
-            <Delete open={this.state.open}></Delete>
-            </div>
-        </>
-        );
-    }
+                        </section>
+                        <section onClick={()=>{setInputs({open: true, board: board})}}>
+                            <DropdownItem className="text-danger">
+                                Remove data
+                            </DropdownItem>
+                        </section>
+                    </DropdownMenu>
+                </UncontrolledDropdown>
+                </CardHeader>
+                <CardBody>
+                    {Object(board).contents}
+                </CardBody>
+                <div  style={{textAlign: "right"}}>
+                    <Button color="info" onClick={goBack}>back</Button>&nbsp;&nbsp;
+                </div>
+            </Card>
+            </Col>
+        </Row>
+        <Delete open={open} close={close} no={props.match.params.no}/>
+        <Update open={open2} close={close} no={props.match.params.no}/>
+        </div>
+    </>
+    );
 }
 
-export default boardget;
+export default Board;

@@ -13,4 +13,9 @@ public interface BoardMapper {
     List<BoardEntity> BoardList(PagingVO vo);
     int count();
     BoardEntity getBoard(int no);
+    int deleteBoard(BoardEntity entity);
+    int selectID(BoardEntity entity);
+    int selectPW(BoardEntity entity);
+    int insertBoard(BoardEntity entity);
+    int updateBoard(BoardEntity entity);
 }
