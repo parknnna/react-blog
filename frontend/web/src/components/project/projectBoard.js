@@ -24,7 +24,7 @@ const Project = () => {
         day:""
     });
 
-    const { body, page,day } = inputs;
+    const { body, page } = inputs;
 
     useEffect(() => {
         boardGet();

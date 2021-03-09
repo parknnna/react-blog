@@ -5,9 +5,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  FormGroup,
-  Form,
-  Input,
   Row,
   Col,
 } from "reactstrap";
@@ -16,6 +13,14 @@ import {
 
 function User(){
     return(
+      <div>
+
+      <head>
+        <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    />
+      </head>
         <Row>
         <Col md="4">
               <Card className="card-user">
@@ -28,7 +33,7 @@ function User(){
                         alt="..."
                         className="avatar border-gray"
                         src={require("assets/img/myimg/3.jpg")}
-                      />
+                        />
                       <h5 className="title">박수민</h5>
                     <p className="description">Park Sumin</p>
                   </div>
@@ -41,29 +46,29 @@ function User(){
                   <Button
                     className="btn-neutral btn-icon btn-round"
                     color="default"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    href="#"
+                    onClick={()=>window.open("https://www.facebook.com/profile.php?id=100003474619952")}
                     size="lg"
-                  >
+                    >
                     <i className="fab fa-facebook-f" />
                   </Button>
                   <Button
                     className="btn-neutral btn-icon btn-round"
                     color="default"
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={()=>window.open("https://www.instagram.com/park_nnna/?hl=en")}
                     size="lg"
-                  >
-                    <i className="fab fa-twitter" />
+                    >
+                   <i class="fab fa-instagram"></i>
                   </Button>
                   <Button
                     className="btn-neutral btn-icon btn-round"
                     color="default"
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={()=>window.open("https://github.com/parknnna")}
                     size="lg"
-                  >
-                    <i className="fab fa-google-plus-g" />
+                    >
+                    <i class="fab fa-github"></i>
                   </Button>
                 </div>
               </Card>
@@ -94,6 +99,7 @@ function User(){
               </Card>
             </Col>
             </Row>
+                    </div>
     )
 }
 export default User;

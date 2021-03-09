@@ -4,7 +4,6 @@ import {Button, Card, CardHeader, CardBody, Row, Col  ,CardTitle, } from "reacts
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import axios from "axios";
 import '../../router'
-import PDF from "./PDF"
 import {Link} from "react-router-dom"
 
 
@@ -56,6 +55,9 @@ function Board(props){
                             <Link to={`/admin/PDF/${Object(board).filename}`}>PDF 보기</Link>
                         </div>
                     }
+                    <div style={{textAlign:"right"}}>
+                        <Link onClick={()=>{window.open(Object(board.url))}}>Github 페이지 이동</Link>
+                    </div>
                     {Object(board).contents}
                 </CardBody>
                 <div  style={{textAlign: "right"}}>

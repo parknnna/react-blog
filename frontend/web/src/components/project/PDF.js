@@ -1,6 +1,6 @@
 // Core viewer
 import { Viewer } from '@react-pdf-viewer/core';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // Plugins
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 

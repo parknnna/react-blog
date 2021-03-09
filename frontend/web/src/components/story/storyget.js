@@ -4,14 +4,20 @@ import {Button, Card, CardHeader, CardBody, Row, Col  ,CardTitle, } from "reacts
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import axios from "axios";
 import '../../router'
-import {Link} from "react-router-dom"
-
 
 function Board(props){
+    function importAll(r) {
+        let images = {};
+        r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+        return images;
+      }
+      
+    const images = importAll(require.context('./myimg', false, /\.(png|jpe?g|svg)$/));
+      
     const [inputs, setInputs] = useState({
         board: ""
     });
-
+    
     const goBack = () => {
         props.history.goBack();
     };
@@ -27,8 +33,7 @@ function Board(props){
             console.log(Response)
             setInputs({
                 board: Response.data.story
-            })
-            
+            })    
           }).catch((Error)=>{
               console.log(Error);
           })
@@ -51,8 +56,15 @@ function Board(props){
                     </div>
                 </CardHeader>
                 <CardBody>
-                    <img src={require(`./myimg/123.jpg`)}/>
+                    <div style={{textAlign: "center"}}>
+                        
+                    <img src={images[`${Object(board).filename}`]} width="50%" height="50%"/>
+                    </div>
+                   <br></br>
+                   <br></br>
+                   <div style={{textAlign: "center"}}>
                     {Object(board).contents}
+                   </div>
                 </CardBody>
                 <div  style={{textAlign: "right"}}>
                     <Button color="info" onClick={goBack}>back</Button>&nbsp;&nbsp;

@@ -23,7 +23,7 @@ public class StoryController {
 
 	@PostMapping("/storyfile")
     public int fileup( @RequestParam("file") MultipartFile file) {
-		String filePath = System.getProperty("user.dir")+"/frontend/web/src/assets/img/myimg/";
+		String filePath = System.getProperty("user.dir")+"/frontend/web/src/components/story/myimg/";
 
 		File target = new File(filePath, file.getOriginalFilename());
 		try {

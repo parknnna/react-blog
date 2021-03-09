@@ -59,7 +59,7 @@ class Sidebar extends React.Component {
             to="/admin/dashboard"
           >
             <div className="logo-img">
-              <img src={logo} alt="react-logo" />
+            <i className={"now-ui-icons objects_planet"} />
             </div>
           </Link>
           <Link

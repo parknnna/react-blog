@@ -16,7 +16,7 @@
 
 */
 import React from "react";
-
+import bb from "./bb.jpg"
 class PanelHeader extends React.Component {
   render() {
     return (
@@ -27,6 +27,7 @@ class PanelHeader extends React.Component {
             ? "panel-header-" + this.props.size
             : "")
         }
+        style={{backgroundImage: `url(${bb})`}}
       >
         {this.props.content}
       </div>

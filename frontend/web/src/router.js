@@ -102,7 +102,7 @@ export var dashRoutes = [
     layout: "/admin",
   },
   {
-    path: "/storyget/:no",
+    path: "/storyget/:no/:file",
     name: "story",
     icon: "files_paper",
     component: story,

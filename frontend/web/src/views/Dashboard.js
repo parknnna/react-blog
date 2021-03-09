@@ -20,11 +20,11 @@ class Dashboard extends React.Component {
     var chars = text.split("");
 
     chars.forEach(function (item) {
-        item = (item == " ") ? "&nbsp" : item;
+        item = (item === " ") ? "&nbsp" : item;
         $("<span style='color:white'></span>").html(item).appendTo($typing);
     });
 
-    var $caret = $("<span></span>").attr("id", "caret").css({
+     $("<span></span>").attr("id", "caret").css({
         width: "0.4em",
     }).appendTo($typing);
 
@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
 
   next(){
     $('li[id^=m'+tt+']').show();
-    if(tt==2) tt=1;
+    if(tt===2) tt=1;
     else tt=2;
     $('li[id^=m'+tt+']').hide();
   }
@@ -58,7 +58,7 @@ class Dashboard extends React.Component {
         content={
             <div className="header text-center">
   
-              <h2 id="typing">"박수민 블로그에 오신걸 환영합니다."</h2>
+              <h2 id="typing">박수민 블로그에 오신걸 환영합니다.</h2>
             </div>
         }
         />

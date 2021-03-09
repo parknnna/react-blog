@@ -11,10 +11,7 @@
     </select>
 
     <select id="List" resultType="StoryEntity">
-        SELECT ROW_NUMBER() OVER() as RN, A.* 
-			FROM (
-               select * from story
-			) A ORDER BY no ASC LIMIT #{start}, #{cntPerPage} ;
+               select * from story order by day desc
     </select>
     
     <select id="get" resultType="StoryEntity">

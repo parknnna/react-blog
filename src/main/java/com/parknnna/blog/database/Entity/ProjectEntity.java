@@ -13,5 +13,6 @@ public class ProjectEntity{
     private String filename;
     private String startDay;
     private String endDay;
+    private String url;
 }
 

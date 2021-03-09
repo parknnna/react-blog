@@ -1,163 +1,120 @@
+/*!
 
-import React,{useState,useEffect} from "react";
-import { Link } from 'react-router-dom';
+=========================================================
+* Now UI Dashboard React - v1.4.0
+=========================================================
 
+* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-react
+* Copyright 2020 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/now-ui-dashboard-react/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+import React from "react";
+// react plugin for creating notifications over the dashboard
+import NotificationAlert from "react-notification-alert";
+
+// reactstrap components
 import {
+  Alert,
   Card,
+  CardTitle,
   CardBody,
   CardHeader,
-  Table,
   Row,
-  Col,
+  Col
 } from "reactstrap";
-
+// core components
+import {Link} from "react-router-dom"
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
-import axios from 'axios';
-import '../../router'
+import axios from 'axios'
 
-const ad = window.sessionStorage.getItem("ad")
-const thead = ['no','title','personnel','develop period']
-const Project = () => {
-    const [inputs, setInputs] = useState({
-        body: "",  
-        page: [],
-        day:""
-    });
+class License extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        story: null,
+    };
+  }
+  componentDidMount(){
+    this.story();
+  }
 
-    const { body, page,day } = inputs;
+  story = () =>{
+    axios.get('http://localhost:8080/story/1/10').then((Response)=>{
+      console.log(Response)
+      this.setState({
+        story: Response.data.story,
+      })
+    }).catch((Error)=>{
+        console.log(Error);
+    })
+  }
 
-    useEffect(() => {
-        boardGet();
-    },[]);
+ 
 
-    const pageChange = (selPage) => { //페이지 이동 클릭
-        movePage(selPage,page.cntPerPage)
-    }
-    const nextpage = () => { //다음 페이지
-        movePage(page.endPage+1,page.cntPerPage)
-    }
-    const prevpage = () => { //이전 페이지
-        movePage(page.startPage-1,page.cntPerPage)
-    }
-    const movePage = (nowpage,perpage) => { //페이지 이동
-        axios.get("http://localhost:8080/project/"+nowpage+"/"+perpage)
-            .then(Response => {
-                let project=[];
-                for(let i=0;i<Response.data.projects.length;i++){
-                    var msDiff = new Date(Response.data.projects[i].startDay).getTime() - 
-                        new Date(Response.data.projects[i].endDay).getTime();  
-                    var diff = Math.floor(msDiff / (1000 * 60 * 60 * 24));
-                    let temp={
-                        no:Response.data.projects[i].no,
-                        title:Response.data.projects[i].title,
-                        personnel:Response.data.projects[i].personnel,
-                        day:diff
-                    };
-                    project.push(temp);
-                }
-                
-
-                setInputs({
-                    body: project,
-                    page: Response.data.page,
-                })
-            })
-            .catch(res => console.log(res))
-    }
-    const makeMap = (start,end) => { //배열 만드는 함수
-        var result=[];
-        for(var i=start;i<=end;i++){
-        result.push(i);
-        }
-        return result;
-    }
-
-    const boardGet = () => {
-        axios.get('http://localhost:8080/story/1/10').then((Response)=>{ 
-            setInputs({
-                body: Response.data.story,
-                page: Response.data.page,
-            })
-        }).catch((Error)=>{
-            console.log(Error);
-        })
-    }
+  render() {
+      var ad = window.sessionStorage.getItem("ad")
+    function importAll(r) {
+        let images = {};
+        r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+        return images;
+      }
+      
+    const images = importAll(require.context('./myimg', false, /\.(png|jpe?g|svg)$/));
+      
+    var { story }=this.state
     return (
-    <>
+      <>
         <PanelHeader
-        content={
+          content={
             <div className="header text-center">
-            <h2 className="title">Story</h2>
+              <h2 className="title">Story</h2>
             </div>
-        }
+          }
         />
+        
         <div className="content">
-        <Row>
-            <Col xs={12}>
-            <Card>
-                <CardHeader>
-                    {ad && 
-                        <div style={{textAlign: "right"}}>
-                            <Link to="storyInsert" style={{textAlign:"right"}}>일상 작성</Link>
-                        </div>
-                    }          
-                </CardHeader>
-                <CardBody>
-                <Table responsive>
-                    <thead className="text-primary">
-                    <tr>
-                        {thead.map((prop, key) => {
-                        if (key === thead.length - 1)
-                            return (
-                            <th key={key} className="text-right">
-                                {prop}
-                            </th>
-                            );
-                        if(key === 1){
-                            return(
-                            <th key={key} style={{width:"40%"}}>{prop}</th>
-                            );
-                        }
-                        return <th key={key} style={{width:"20%"}}>{prop}</th>;
-                        })}
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {body&&body.map((prop, key) => {
-                        return (
-                        <tr key={key}>
-                            <td>{prop.no}</td>
-                            <td>
-                            <Link to={`/admin/storyget/${prop.no}`}>{prop.title}</Link>
-                            </td>
-                            <td className="text-right">{prop.day} 일</td>
-                        </tr>
-                        );
-                    })}
-                    </tbody>
-                </Table>
-                <nav aria-label="pagination">
-                    <ul class="pagination justify-content-center">
-                    {page.startPage !== 1 ?
-                        <li onClick={() => prevpage()} class="page-item disabled"><a class="disabled page-link" aria-label="Go to previous page" aria-disabled="true">‹</a></li> : ""} {/*이전 */}
-                    {makeMap(page.startPage,page.endPage).map((i) => {
-                        if(page.nowPage===i){
-                        return(<li class="active page-item"><a class="page-link" aria-label="Current page 1">{i}</a></li>);
-                        }else{
-                        return(<li onClick={() => pageChange(i)} class=" page-item"><a class="page-link" aria-label="Go to page 2">{i}</a></li>)
-                        }
-                    })}
-                    {page.endPage !== page.lastPage ? <li class="page-item" onClick={() => nextpage()}><a class="page-link" aria-label="Go to next page" aria-disabled="false">›</a></li> : ''} {/*다음 */}
-                    </ul>
-                </nav>
-                </CardBody>
-            </Card>
-            </Col>
-        </Row>
+          <NotificationAlert ref="notificationAlert" />
+          <Row>
+            {story&&story.map((i,k)=>{
+              return(
+                  <div>
+                    
+                    <Col width="20%">
+                        <Link to={`storyget/${i.no}/${i.filename}`}>
+                    <Card>
+                        <CardHeader>       
+                            <CardTitle tag="h4">{i.title}</CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                        <Alert color="info">
+                        <img src={images[`${Object(i).filename}`]} width="240" height="240"/>
+                        <div style={{textAlign: "right"}}>날짜 : {i.day}</div>
+                        </Alert>
+                        </CardBody>
+                    </Card>
+                        </Link>
+                    </Col> 
+                  </div>
+              );
+            })}  
+            
+          </Row>
         </div>
-    </>
+        {ad && 
+            <div style={{textAlign: "right"}}>
+                <Link to="storyInsert" style={{textAlign:"right"}}>일상 작성</Link>
+            </div>
+        } 
+      </>
     );
-    
+  }
 }
 
-export default Project;
+export default License;
