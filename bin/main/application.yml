@@ -17,3 +17,5 @@ spring:
     show-sql: true
 mybatis:
   config-location: classpath:mybatis-config.xml
+admin:
+  PW: ${secret}

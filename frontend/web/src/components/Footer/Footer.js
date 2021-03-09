@@ -29,21 +29,28 @@ import {
 } from "@material-ui/core";
 import { CCol, CFormGroup, CLabel} from '@coreui/react';
 import {Link} from "react-router-dom"
+import axios from "axios";
 
 class Footer extends React.Component {
   state={admin:false, PW:""}
 
   submit = () =>{
-    if(this.state.PW==="tnals123!"){
-      alert("관리자 로그인")
-      window.sessionStorage.setItem("ad",true);
-      document.getElementById("ad").click();
-      this.setState({
-        admin:false
-      })
-    }else{
-      alert("비밀번호가 다릅니다.")
-    }
+    var data = new FormData();
+    data.append("PW",this.state.PW)
+    axios.post("http://localhost:8080/ad",data)
+    .then((res)=>{
+      if(res.data){
+        alert("관리자 로그인")
+        window.sessionStorage.setItem("ad",true);
+        document.getElementById("ad").click();
+        this.setState({
+          admin:false
+        })
+        window.location.reload();
+      }else{
+        alert("비밀번호가 다릅니다.")
+      }
+    })
   }
 
   onChange = (e) => {
@@ -68,7 +75,15 @@ class Footer extends React.Component {
         </hidden>
         <Container fluid={this.props.fluid ? true : false}>
           <div style={{textAlign:"right"}}>
-            <Button variant="contained" color="primary" onClick={()=>{this.setState({admin:true})}}>관리자</Button>
+            <Button variant="contained" color="primary" onClick={()=>{
+                if(window.sessionStorage.getItem("ad")){
+                  window.sessionStorage.removeItem("ad")
+                  alert("관리자 권한 해제")
+                  window.location.reload();
+                }else{
+                  this.setState({admin:true})
+                }
+              }}>관리자</Button>
           </div>
 
           <Dialog open={this.state.admin} contentStyle={{width: "100%", maxWidth: "none"}} onClose={()=>this.close()} >
@@ -79,7 +94,13 @@ class Footer extends React.Component {
                   <CLabel htmlFor="start_date">Password</CLabel>
                 </CCol>
                 <CCol xs="12" md="9">
-                  <input type="password" name="PW" placeholder="PW" value={this.state.PW} onChange={this.onChange} />
+                  <input type="password" name="PW" placeholder="PW" value={this.state.PW} onChange={this.onChange} 
+                        onKeyPress = {
+                          (e)=>{if(e.key==='Enter'){
+                            {this.submit()}
+                          }}
+                        }
+                  />
                 </CCol>
               </CFormGroup>
             </DialogContent>

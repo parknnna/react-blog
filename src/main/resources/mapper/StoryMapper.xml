@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.parknnna.blog.database.Mapper.StoryMapper">
+    <insert id="insert">
+        insert into story values (null,#{title},#{contents},#{filename},CURDATE())
+    </insert>
+
+    <select id="count" resultType="int">
+        select count(*) from story
+    </select>
+
+    <select id="List" resultType="StoryEntity">
+        SELECT ROW_NUMBER() OVER() as RN, A.* 
+			FROM (
+               select * from story
+			) A ORDER BY no ASC LIMIT #{start}, #{cntPerPage} ;
+    </select>
+    
+    <select id="get" resultType="StoryEntity">
+        select * from story where no=#{no}
+    </select>
+</mapper>  

@@ -29,6 +29,8 @@ import projectInsert from "components/project/insert"
 import projectBoard from "components/project/projectBoard";
 import projectGet from "components/project/projectGet";
 import PDF from "components/project/PDF"
+import storyInsert from "components/story/insert"
+import story from "components/story/storyget"
 
 
 export var dashRoutes = [
@@ -90,6 +92,20 @@ export var dashRoutes = [
     name: "projectGet",
     icon: "files_paper",
     component: PDF,
+    layout: "/admin",
+  },
+  {
+    path: "/storyInsert",
+    name: "storyInsert",
+    icon: "files_paper",
+    component: storyInsert,
+    layout: "/admin",
+  },
+  {
+    path: "/storyget/:no",
+    name: "story",
+    icon: "files_paper",
+    component: story,
     layout: "/admin",
   },
 ];

@@ -5,11 +5,11 @@ import lombok.*;
 
 @Getter
 @Setter
-public class LicenseEntity{
+public class StoryEntity{
     private int no;
-    private String name;
-    private String home;
+    private String title;
+    private String contents;
+    private String filename;
     private String day;
-    private int tt;
 }
 

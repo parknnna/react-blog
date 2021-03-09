@@ -37,7 +37,7 @@ class License extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      License: null
+      License: null,
     };
   }
   componentDidMount(){
@@ -48,7 +48,7 @@ class License extends React.Component {
     axios.get('http://localhost:8080/License').then((Response)=>{
       console.log(Response)
       this.setState({
-        License: Response.data.License
+        License: Response.data.License,
       })
     }).catch((Error)=>{
         console.log(Error);
@@ -64,7 +64,7 @@ class License extends React.Component {
         <PanelHeader
           content={
             <div className="header text-center">
-              <h2 className="title">License</h2>
+              <h2 className="title">License & Awards</h2>
             </div>
           }
         />
@@ -76,7 +76,10 @@ class License extends React.Component {
                 <Col md={6} xs={12}>
                   <Card>
                     <CardHeader>
-                      <CardTitle tag="h4">License</CardTitle>
+                      {i.tt===0?
+                        <CardTitle tag="h4">License</CardTitle>
+                        :<CardTitle tag="h4">Awards</CardTitle>
+                      }
                     </CardHeader>
                     <CardBody>
                       <Alert color="info">
@@ -89,6 +92,7 @@ class License extends React.Component {
                 </Col> 
               );
             })}  
+            
           </Row>
         </div>
       </>

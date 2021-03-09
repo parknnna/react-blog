@@ -46,7 +46,7 @@
     "@types/googlemaps": "3.39.6",
     "@types/markerclustererplus": "2.1.33",
     "@types/react": "16.9.36",
-    "jquery": "3.5.1",
+    "jquery": "^3.5.1",
     "typescript": "3.9.5"
   },
   "browserslist": {

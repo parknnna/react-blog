@@ -10,5 +10,6 @@
         <mapper resource="mapper/LicenseMapper.xml"/>
         <mapper resource="mapper/BoardMapper.xml"/>
         <mapper resource="mapper/ProjectMapper.xml"/>
+        <mapper resource="mapper/StoryMapper.xml"/>
     </mappers>
-</configuration>  
+</configuration>   

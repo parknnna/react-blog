@@ -1,6 +1,7 @@
 package com.parknnna.blog.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,12 +11,27 @@ import java.util.*;
 
 import com.parknnna.blog.database.Entity.*;
 import com.parknnna.blog.Service.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+@Configuration
+//value를 통해 값이 있는 위치를 명시해준다.
+@PropertySource(value = "classpath:application.yml")
+@ConfigurationProperties(prefix = "upload")
 @RestController
 public class ProjectController {
 	
 	@Autowired
 	private ProjectService ProjectService;
+
+    @Value("${secret}")
+    private String oing;
+
+
 
 	@PostMapping("/projectfile")
     public int fileup( @RequestParam("file") MultipartFile file) {
@@ -60,4 +76,12 @@ public class ProjectController {
 
         return result;
     }
+
+    @PostMapping(value="/ad")
+    public boolean postMethodName(@RequestParam("PW") String adPW) {
+        String ad=oing;
+        if(ad.equals(adPW)) return true;
+        return false;
+    }
+    
 }

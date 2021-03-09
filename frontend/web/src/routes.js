@@ -18,8 +18,8 @@
 import Dashboard from "views/Dashboard.js";
 import TableList from "views/TableList.js";
 import License from "views/License.js";
-import UserPage from "views/UserPage.js";
-import i from "views/Icons.js";
+
+import i from "components/story/storyBoard";
 import projectBoard from "components/project/projectBoard";
 
 
@@ -29,20 +29,13 @@ var dashRoutes = [
   {
     path: "/dashboard",
     name: "Main",
-    icon: "design_app",
+    icon: "emoticons_satisfied",
     component: Dashboard,
     layout: "/admin",
   },
   {
-    path: "/user-page",
-    name: "User Profile",
-    icon: "users_single-02",
-    component: UserPage,
-    layout: "/admin",
-  },
-  {
     path: "/License",
-    name: "License",
+    name: "License & Awards",
     icon: "design_app",
     component: License,
     layout: "/admin",
@@ -57,14 +50,14 @@ var dashRoutes = [
   {
     path: "/projectBoard",
     name: "projects",
-    icon: "files_paper",
+    icon: "loader_gear",
     component: projectBoard,
     layout: "/admin",
   },
   {
-    path: "/i",
-    name: "i",
-    icon: "files_paper",
+    path: "/story",
+    name: "story",
+    icon: "design_image",
     component: i,
     layout: "/admin",
   },
