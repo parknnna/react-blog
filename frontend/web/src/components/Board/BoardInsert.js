@@ -11,7 +11,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
-
+import { Link } from 'react-router-dom';
 import axios from 'axios'
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 
@@ -42,6 +42,7 @@ function Insert ({history}) {
             }
         }).then((Response)=>{
             alert("작성 완료")  
+            document.getElementById("insert").click()
         }).catch((Error)=>{
             console.log(Error);
             alert("오류")
@@ -57,6 +58,10 @@ function Insert ({history}) {
     };
     return (
     <>
+    <hidden>
+        <Link to="/admin/extended-tables" id="update">
+        </Link>
+    </hidden>
     <PanelHeader size="sm" />
     <div className="content">
         <Row>

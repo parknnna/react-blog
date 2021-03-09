@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.parknnna.blog.database.Mapper.ProjectMapper">
+    <insert id="insert">
+        insert into project values (null,#{title},#{personnel},#{contents},#{filename},#{startDay},#{endDay})
+    </insert>
+
+    <select id="count" resultType="int">
+        select count(*) from project
+    </select>
+
+    <select id="projectList" resultType="ProjectEntity">
+        SELECT ROW_NUMBER() OVER() as RN, A.* 
+			FROM (
+               select * from project
+			) A ORDER BY no ASC LIMIT #{start}, #{cntPerPage} ;
+    </select>
+    
+    <select id="getProject" resultType="ProjectEntity">
+        select * from project where no=#{no}
+    </select>
+</mapper>  

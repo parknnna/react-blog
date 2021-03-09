@@ -14,7 +14,7 @@ import {
 
 import axios from 'axios'
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
-
+import { Link } from 'react-router-dom';
 
 function Insert (props) {
     const [inputs, setInputs] = useState({  
@@ -64,6 +64,7 @@ function Insert (props) {
             }
         }).then((Response)=>{
             alert("작성 완료")  
+            document.getElementById("update").click()
         }).catch((Error)=>{
             console.log(Error);
             alert("오류")
@@ -80,6 +81,10 @@ function Insert (props) {
     return (
     <>
     <PanelHeader size="sm" />
+    <hidden>
+          <Link to="/admin/extended-tables" id="update">
+          </Link>
+      </hidden>
     <div className="content">
         <Row>
         <Col xs={12}>

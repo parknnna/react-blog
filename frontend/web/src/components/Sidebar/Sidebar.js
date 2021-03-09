@@ -25,6 +25,7 @@ import PerfectScrollbar from "perfect-scrollbar";
 
 import logo from "logo-white.svg";
 
+const ad = window.sessionStorage.getItem("ad");
 var ps;
 
 class Sidebar extends React.Component {
@@ -65,7 +66,10 @@ class Sidebar extends React.Component {
             className="simple-text logo-normal"
             to="/admin/dashboard"
           >
-            parknnna
+            {Boolean(ad)===true ?
+              <font>admin</font>:
+              <font>parknnna</font>
+            }
           </Link>
         </div>
         <div className="sidebar-wrapper" ref="sidebar">

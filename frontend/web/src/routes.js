@@ -19,11 +19,16 @@ import Dashboard from "views/Dashboard.js";
 import TableList from "views/TableList.js";
 import License from "views/License.js";
 import UserPage from "views/UserPage.js";
+import i from "views/Icons.js";
+import projectBoard from "components/project/projectBoard";
+
+
+
 
 var dashRoutes = [
   {
     path: "/dashboard",
-    name: "Dashboard",
+    name: "Main",
     icon: "design_app",
     component: Dashboard,
     layout: "/admin",
@@ -47,6 +52,20 @@ var dashRoutes = [
     name: "notice board",
     icon: "files_paper",
     component: TableList,
+    layout: "/admin",
+  },
+  {
+    path: "/projectBoard",
+    name: "projects",
+    icon: "files_paper",
+    component: projectBoard,
+    layout: "/admin",
+  },
+  {
+    path: "/i",
+    name: "i",
+    icon: "files_paper",
+    component: i,
     layout: "/admin",
   },
 ];

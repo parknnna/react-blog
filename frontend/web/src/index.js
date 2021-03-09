@@ -26,6 +26,7 @@ import "assets/css/demo.css";
 
 import AdminLayout from "layouts/Admin.js";
 
+
 const hist = createBrowserHistory();
 
 ReactDOM.render(

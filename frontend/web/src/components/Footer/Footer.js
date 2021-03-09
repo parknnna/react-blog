@@ -20,61 +20,74 @@ import React from "react";
 import { Container } from "reactstrap";
 // used for making the prop types of this component
 import PropTypes from "prop-types";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@material-ui/core";
+import { CCol, CFormGroup, CLabel} from '@coreui/react';
+import {Link} from "react-router-dom"
 
 class Footer extends React.Component {
+  state={admin:false, PW:""}
+
+  submit = () =>{
+    if(this.state.PW==="tnals123!"){
+      alert("관리자 로그인")
+      window.sessionStorage.setItem("ad",true);
+      document.getElementById("ad").click();
+      this.setState({
+        admin:false
+      })
+    }else{
+      alert("비밀번호가 다릅니다.")
+    }
+  }
+
+  onChange = (e) => {
+    let nextState = {};
+    nextState[e.target.name] = e.target.value;
+    this.setState(nextState);
+  };
+  close=()=>{
+    this.setState({
+      admin:false
+    })
+  };
+
+
   render() {
     return (
       <footer
         className={"footer" + (this.props.default ? " footer-default" : "")}
       >
+        <hidden>
+          <Link to="/admin" id="ad"></Link>
+        </hidden>
         <Container fluid={this.props.fluid ? true : false}>
-          <nav>
-            <ul>
-              <li>
-                <a
-                  href="https://www.creative-tim.com?ref=nudr-footer"
-                  target="_blank"
-                >
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://presentation.creative-tim.com?ref=nudr-footer"
-                  target="_blank"
-                >
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://blog.creative-tim.com?ref=nudr-footer"
-                  target="_blank"
-                >
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div className="copyright">
-            &copy; {1900 + new Date().getYear()}, Designed by{" "}
-            <a
-              href="https://www.invisionapp.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Invision
-            </a>
-            . Coded by{" "}
-            <a
-              href="https://www.creative-tim.com?ref=nudr-footer"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Creative Tim
-            </a>
-            .
+          <div style={{textAlign:"right"}}>
+            <Button variant="contained" color="primary" onClick={()=>{this.setState({admin:true})}}>관리자</Button>
           </div>
+
+          <Dialog open={this.state.admin} contentStyle={{width: "100%", maxWidth: "none"}} onClose={()=>this.close()} >
+          <DialogTitle>관리자 로그인</DialogTitle>
+            <DialogContent>
+              <CFormGroup row>
+                <CCol md="3">
+                  <CLabel htmlFor="start_date">Password</CLabel>
+                </CCol>
+                <CCol xs="12" md="9">
+                  <input type="password" name="PW" placeholder="PW" value={this.state.PW} onChange={this.onChange} />
+                </CCol>
+              </CFormGroup>
+            </DialogContent>
+            <DialogActions>
+              <Button variant="contained" color="primary" onClick={this.submit}>로그인</Button>
+              <Button variant="outlined" color="primary" onClick={()=>this.close()}>닫기</Button>
+            </DialogActions>
+          </Dialog>
         </Container>
       </footer>
     );

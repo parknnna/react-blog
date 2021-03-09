@@ -57,10 +57,8 @@ class User extends React.Component {
     return (
       <>
       <hidden>
-        <Button>
           <Link to="/admin/extended-tables" id="delete">
           </Link>
-        </Button>
       </hidden>
       <Dialog open={this.props.open} contentStyle={{width: "100%", maxWidth: "none"}} onClose={()=>this.close()} >
         <DialogTitle>게시글 삭제</DialogTitle>

@@ -22,9 +22,14 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import board from "components/Board/BoardGet";
 import boardDelte from "components/Board/BoardDelete";
-import tableList from "views/TableList"
-import boardInsert from "components/Board/BoardInsert"
-import boardUpdateForm from "components/Board/BoardUpdateForm"
+import tableList from "views/TableList";
+import boardInsert from "components/Board/BoardInsert";
+import boardUpdateForm from "components/Board/BoardUpdateForm";
+import projectInsert from "components/project/insert"
+import projectBoard from "components/project/projectBoard";
+import projectGet from "components/project/projectGet";
+import PDF from "components/project/PDF"
+
 
 export var dashRoutes = [
   {
@@ -58,6 +63,33 @@ export var dashRoutes = [
     name: "boardUpdateForm",
     icon: "files_paper",
     component: boardUpdateForm,
+    layout: "/admin",
+  },
+  {
+    path: "/projectInsert",
+    name: "projectInsert",
+    icon: "files_paper",
+    component: projectInsert,
+    layout: "/admin",
+  },
+  {
+    path: "/projectBoard",
+    name: "projects",
+    icon: "files_paper",
+    component: projectBoard,
+    layout: "/admin",
+  },{
+    path: "/projectGet/:no",
+    name: "projectGet",
+    icon: "files_paper",
+    component: projectGet,
+    layout: "/admin",
+  },
+  {
+    path: "/PDF/:file",
+    name: "projectGet",
+    icon: "files_paper",
+    component: PDF,
     layout: "/admin",
   },
 ];
