@@ -14,7 +14,7 @@
         SELECT ROW_NUMBER() OVER() as RN, A.* 
 			FROM (
                select * from project
-			) A ORDER BY no ASC LIMIT #{start}, #{cntPerPage} ;
+			) A ORDER BY no DESC LIMIT #{start}, #{cntPerPage} ;
     </select>
     
     <select id="getProject" resultType="ProjectEntity">

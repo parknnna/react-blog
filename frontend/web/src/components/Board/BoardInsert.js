@@ -41,8 +41,9 @@ function Insert ({history}) {
                 "contents": contents
             }
         }).then((Response)=>{
-            alert("작성 완료")  
-            document.getElementById("insert").click()
+            alert("작성 w완료")  
+            history.push("/admin/extended-tables")
+            return;
         }).catch((Error)=>{
             console.log(Error);
             alert("오류")

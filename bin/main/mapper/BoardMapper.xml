@@ -6,7 +6,7 @@
         SELECT ROW_NUMBER() OVER() as RN, A.* 
 			FROM (
                select * from board
-			) A ORDER BY no ASC LIMIT #{start}, #{cntPerPage} ;
+			) A ORDER BY no DESC LIMIT #{start}, #{cntPerPage} ;
     </select>
     
     <select id="count" resultType="int">
