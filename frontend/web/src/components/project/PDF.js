@@ -7,6 +7,7 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 // Import styles
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import {Button} from "reactstrap";
 // import './App.css';
 
 const pdfjs = require("pdfjs-dist");
