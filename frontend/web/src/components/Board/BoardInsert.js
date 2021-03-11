@@ -32,7 +32,7 @@ function Insert ({history}) {
     const submit = () =>{
         axios({
             method:"POST",
-            url: 'http://localhost:8080/board',
+            url: 'http://15.164.97.108:8080/board',
             data:{
                 "no": null,
                 "name": name,

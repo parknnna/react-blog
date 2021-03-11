@@ -33,7 +33,7 @@ class User extends React.Component {
   };
 
   submit = () =>{
-    axios.delete(`http://localhost:8080/board`,{
+    axios.delete(`http://15.164.97.108:8080/board`,{
       data: {
         no: this.props.no,
         name: this.state.name,

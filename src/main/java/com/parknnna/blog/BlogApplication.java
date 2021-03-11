@@ -1,6 +1,9 @@
 package com.parknnna.blog;
 
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -11,6 +14,12 @@ public class BlogApplication {
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(BlogApplication.class, args);
+		InetAddress local;
+        String ip;
+		try { local = InetAddress.getLocalHost(); 
+			ip = local.getHostAddress(); 
+			System.out.print(ip);
+		}catch (UnknownHostException e1) { e1.printStackTrace(); }
 	}
 
 }

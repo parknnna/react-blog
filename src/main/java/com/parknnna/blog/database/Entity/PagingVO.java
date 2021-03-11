@@ -1,5 +1,9 @@
 package com.parknnna.blog.database.Entity;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+
+@JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class PagingVO {
   
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;

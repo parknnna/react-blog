@@ -23,7 +23,7 @@ function Board(props){
     },[]);
 
     const getBoard = () => {
-        axios.get(`http://localhost:8080/project/`+props.match.params.no).then((Response)=>{
+        axios.get(`http://15.164.97.108:8080/project/`+props.match.params.no).then((Response)=>{
             console.log(Response)
             setInputs({
                 board: Response.data.project

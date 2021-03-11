@@ -35,7 +35,7 @@ class User extends React.Component {
   submit = () =>{
     axios({
         method:"POST",
-        url: 'http://localhost:8080/board2',
+        url: 'http://15.164.97.108:8080/board2',
         data:{
             no: this.props.no,
             name: this.state.name,

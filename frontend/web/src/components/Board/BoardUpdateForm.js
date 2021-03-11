@@ -34,7 +34,7 @@ function Insert (props) {
     },[]);
 
     const getBoard = () => {
-        axios.get(`http://localhost:8080/board/`+props.match.params.no).then((Response)=>{
+        axios.get(`http://15.164.97.108:8080/board/`+props.match.params.no).then((Response)=>{
             console.log(Response)
             setInputs({
                 name:Response.data.board.name,
@@ -54,7 +54,7 @@ function Insert (props) {
         }
         axios({
             method:"PUT",
-            url: 'http://localhost:8080/board',
+            url: 'http://15.164.97.108:8080/board',
             data:{
                 "no": props.match.params.no,
                 "name": name,

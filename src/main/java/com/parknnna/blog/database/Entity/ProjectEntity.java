@@ -3,8 +3,12 @@ package com.parknnna.blog.database.Entity;
 
 import lombok.*;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+
 @Getter
 @Setter
+@JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class ProjectEntity{
     private int no;
     private String title;

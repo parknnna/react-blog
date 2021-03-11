@@ -38,7 +38,7 @@ function Insert ({history}) {
             filename: "",
         }
         if(file.get("file")){
-            axios.post('http://localhost:8080/storyfile',file,{"content-type": "multipart/form-data;charset=UTF-8"})
+            axios.post('http://15.164.97.108:8080/storyfile',file,{"content-type": "multipart/form-data;charset=UTF-8"})
             .then((Response)=>{
             }).catch((Error)=>{
                 console.log(Error);
@@ -47,7 +47,7 @@ function Insert ({history}) {
             })
             data.filename=file.get("file").name;
         }
-        axios.post('http://localhost:8080/story',data)
+        axios.post('http://15.164.97.108:8080/story',data)
         .then((Response)=>{
             alert("작성완료");
             document.getElementById("link").click();

@@ -37,7 +37,7 @@ class Footer extends React.Component {
   submit = () =>{
     var data = new FormData();
     data.append("PW",this.state.PW)
-    axios.post("http://localhost:8080/ad",data)
+    axios.post("http://15.164.97.108:8080/ad",data)
     .then((res)=>{
       if(res.data){
         alert("관리자 로그인")

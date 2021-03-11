@@ -42,7 +42,7 @@ class RegularTables extends React.Component {
     this.movePage(page.startPage-1,page.cntPerPage)
   }
   movePage(nowpage,perpage){ //페이지 이동
-    axios.get("http://localhost:8080/board/"+nowpage+"/"+perpage)
+    axios.get("http://15.164.97.108:8080/board/"+nowpage+"/"+perpage)
         .then(res => {
             this.setState({
               body: res.data.board,
@@ -60,7 +60,7 @@ class RegularTables extends React.Component {
   }
 
   boardGet = () => {
-    axios.get('http://localhost:8080/board/1/10').then((Response)=>{
+    axios.get('http://15.164.97.108:8080/board/1/10').then((Response)=>{
       console.log(Response)
       this.setState({
         body: Response.data.board,

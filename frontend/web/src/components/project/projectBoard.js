@@ -40,7 +40,7 @@ const Project = () => {
         movePage(page.startPage-1,page.cntPerPage)
     }
     const movePage = (nowpage,perpage) => { //페이지 이동
-        axios.get("http://localhost:8080/project/"+nowpage+"/"+perpage)
+        axios.get("http://15.164.97.108:8080/project/"+nowpage+"/"+perpage)
             .then(Response => {
                 let project=[];
                 for(let i=0;i<Response.data.projects.length;i++){
@@ -73,7 +73,7 @@ const Project = () => {
     }
 
     const boardGet = () => {
-        axios.get('http://localhost:8080/project/1/10').then((Response)=>{
+        axios.get('http://15.164.97.108:8080/project/1/10').then((Response)=>{
             let project=[];
             for(let i=0;i<Response.data.projects.length;i++){
                 var msDiff = new Date(Response.data.projects[i].endDay).getTime() - 

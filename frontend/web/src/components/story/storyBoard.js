@@ -46,7 +46,7 @@ class License extends React.Component {
   }
 
   story = () =>{
-    axios.get('http://localhost:8080/story/1/10').then((Response)=>{
+    axios.get('http://15.164.97.108:8080/story/1/10').then((Response)=>{
       console.log(Response)
       this.setState({
         story: Response.data.story,
