@@ -15,11 +15,16 @@ pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.entry
 
 function Board(props){
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
-
+  const goBack = () => {
+    props.history.goBack();
+  };
   return (
   <>
   <br></br>
   <br></br>
+  <div  style={{textAlign: "right"}}>
+      <Button color="info" onClick={goBack}>back</Button>&nbsp;&nbsp;
+  </div>
   <div style={{width:"97%"}}>
     <Viewer
       fileUrl={require(`./projects/${props.match.params.file}`)}

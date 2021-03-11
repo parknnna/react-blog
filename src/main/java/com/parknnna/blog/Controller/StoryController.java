@@ -23,7 +23,7 @@ public class StoryController {
 
 	@PostMapping("/storyfile")
     public int fileup( @RequestParam("file") MultipartFile file) {
-		String filePath = "C:\react-blog\frontend\web\src\components\story\myimg";
+		String filePath = "C:/react-blog/frontend/web/src/components/story/myimg";
 
 		File target = new File(filePath, file.getOriginalFilename());
 		try {
