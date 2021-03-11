@@ -30,7 +30,7 @@
     </select>
 
     <insert id="insertBoard" parameterType="BoardEntity">
-        insert into board values (null, #{name}, #{pw}, #{title}, #{contents}, CURDATE())
+        insert into board values (null, #{name}, #{pw}, #{title}, #{contents}, CURDATE(), #{ip})
     </insert>
 
     <update id="updateBoard" parameterType="BoardEntity">

@@ -14,6 +14,11 @@ public class BoardEntity{
     private String pw;
     private String title;
     private String contents;
-    private String day;    
+    private String day; 
+    private String ip;   
+
+    public void setIp(String ip){
+        this.ip=ip;
+    }
 }
 
