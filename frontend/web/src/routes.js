@@ -42,13 +42,6 @@ var dashRoutes = [
     layout: "/admin",
   },  
   {
-    path: "/extended-tables",
-    name: "notice board",
-    icon: "files_paper",
-    component: TableList,
-    layout: "/admin",
-  },
-  {
     path: "/projectBoard",
     name: "projects",
     icon: "loader_gear",
@@ -60,6 +53,13 @@ var dashRoutes = [
     name: "story",
     icon: "design_image",
     component: i,
+    layout: "/admin",
+  },
+  {
+    path: "/extended-tables",
+    name: "notice board",
+    icon: "files_paper",
+    component: TableList,
     layout: "/admin",
   },
 ];
