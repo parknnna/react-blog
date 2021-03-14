@@ -84,7 +84,7 @@ class License extends React.Component {
           <Row>
             {story&&story.map((i,k)=>{
               return(
-                  <div style={{width:"33%"}}>               
+                  <div>               
                     <Col>
                         <Link to={`storyget/${i.no}/${i.filename}`}>
                     <Card>
@@ -93,7 +93,7 @@ class License extends React.Component {
                         </CardHeader>
                         <CardBody>
                         <Alert color="info">
-                        <img src={images[`${Object(i).filename}`]} />
+                        <img src={images[`${Object(i).filename}`]} width="310" height="310"/>
                         <div style={{textAlign: "right"}}>날짜 : {i.day}</div>
                         </Alert>
                         </CardBody>
