@@ -50,12 +50,12 @@ function Board(props){
                     </div>
                 </CardHeader>
                 <CardBody>
-                    {Object(board).filename!=="" &&
+                    {Object(board).filename!==undefined &&
                         <div style={{textAlign:"right"}}>
                             <Link to={`/admin/PDF/${Object(board).filename}`}>PDF 보기</Link>
                         </div>
                     }
-                    {Object(board).url!=="" &&
+                    {Object(board).url!==undefined &&
                         <div style={{textAlign:"right"}}>
                             <Link onClick={()=>{window.open(Object(board.url))}}>Github 페이지 이동</Link>
                         </div>
