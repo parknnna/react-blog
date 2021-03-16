@@ -55,14 +55,14 @@ function Board(props){
                             <Link to={`/admin/PDF/${Object(board).filename}`}>PDF 보기</Link>
                         </div>
                     }
-                    {Object(board).url2!==null &&
-                        <div style={{textAlign:"right"}}>
-                            <Link onClick={()=>{window.open(Object(board.url2))}}>URL 이동({Object(board.url2)})</Link>
-                        </div>
-                    }
                     {Object(board).url!==null &&
                         <div style={{textAlign:"right"}}>
-                            <Link onClick={()=>{window.open(Object(board.url))}}>Github 페이지 이동</Link>
+                            <Link onClick={()=>{window.open(Object(board).url2)}}>Github 페이지 이동</Link>
+                        </div>
+                    }
+                    {Object(board).url2!==null &&
+                        <div style={{textAlign:"right"}}>
+                            <Link onClick={()=>{window.open(Object(board).url2)}}>URL 이동({Object(board).url2})</Link>
                         </div>
                     }
                     <br></br>
