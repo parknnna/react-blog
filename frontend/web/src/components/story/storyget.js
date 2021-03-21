@@ -4,6 +4,7 @@ import {Button, Card, CardHeader, CardBody, Row, Col  ,CardTitle, } from "reacts
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import axios from "axios";
 import '../../router'
+import ADDelete from "../adDelete"
 
 function Board(props){
     function importAll(r) {
@@ -52,6 +53,9 @@ function Board(props){
                     <CardTitle tag="h4">{Object(board).title}</CardTitle>
                     <hr></hr>
                     <div style={{textAlign:"right"}}>
+                        {window.sessionStorage.getItem("ad") &&
+                            <ADDelete no={props.match.params.no} table="story" prop={props}/>
+                        }
                         <h5 className="card-category">등록 날짜 : {Object(board).day}</h5>
                     </div>
                 </CardHeader>

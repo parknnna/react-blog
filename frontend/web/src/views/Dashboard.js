@@ -57,7 +57,6 @@ class Dashboard extends React.Component {
         <PanelHeader
         content={
             <div className="header text-center">
-  
               <h2 id="typing">박수민 블로그에 오신걸 환영합니다.</h2>
             </div>
         }

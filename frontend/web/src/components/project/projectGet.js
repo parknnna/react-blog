@@ -5,6 +5,7 @@ import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import axios from "axios";
 import '../../router'
 import {Link} from "react-router-dom"
+import ADDelete from "../adDelete"
 
 
 function Board(props){
@@ -50,6 +51,11 @@ function Board(props){
                     </div>
                 </CardHeader>
                 <CardBody>
+                    {window.sessionStorage.getItem("ad") &&
+                        <div style={{textAlign: "right"}}>
+                            <ADDelete no={props.match.params.no} table="project" prop={props}/>
+                        </div>
+                    }
                     {Object(board).filename!==null &&
                         <div style={{textAlign:"right"}}>
                             <Link to={`/admin/PDF/${Object(board).filename}`}>PDF 보기</Link>

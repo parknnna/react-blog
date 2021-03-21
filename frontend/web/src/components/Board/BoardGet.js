@@ -8,6 +8,7 @@ import axios from "axios";
 import '../../router'
 import Delete from './BoardDelete'
 import Update from './BoardUpdate'
+import ADDelete from '../adDelete'
 
 function Board(props){
     const [inputs, setInputs] = useState({
@@ -44,7 +45,7 @@ function Board(props){
         });
     }
       
-
+    const ad = window.sessionStorage.getItem("ad");
     return (
     <>
         <PanelHeader size="sm" />
@@ -69,11 +70,15 @@ function Board(props){
                         <section onClick={()=>{setInputs({open2: true, board: board})}}>
                             <DropdownItem>Update data</DropdownItem>
                         </section>
-                        <section onClick={()=>{setInputs({open: true, board: board})}}>
-                            <DropdownItem className="text-danger">
-                                Remove data
-                            </DropdownItem>
-                        </section>
+                        {ad ? //////////////////////////////////////////////////////
+                            <ADDelete no={props.match.params.no} table="board" prop={props}/>
+                            :
+                            <section onClick={()=>{setInputs({open: true, board: board})}}>
+                                <DropdownItem className="text-danger">
+                                    Remove data
+                                </DropdownItem>
+                            </section>
+                        }
                     </DropdownMenu>
                 </UncontrolledDropdown>
                 </CardHeader>
