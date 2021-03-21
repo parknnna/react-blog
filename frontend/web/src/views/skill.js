@@ -55,7 +55,6 @@ function Skill(){
                     <div class="Skill_image_container" style={{backgroundImage: `url(${spring_})`}}><div class="Skill_label">Spring</div></div>
                     <div class="Skill_image_container" style={{backgroundImage: `url(${springboot_})`}}><div class="Skill_label">SpringBoot</div></div>
                     <div class="Skill_image_container" style={{backgroundImage: `url(${node_})`}}><div class="Skill_label">Node.JS</div></div>
-                    <div class="Skill_image_container" style={{backgroundImage: `url(${spring_})`}}><div class="Skill_label">React.JS</div></div>
                   </Row>
                   <div><h3>ETC</h3></div>
                   <Row>&nbsp;&nbsp;&nbsp;
