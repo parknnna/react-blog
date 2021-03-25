@@ -84,8 +84,8 @@ const Project = () => {
                     title:Response.data.projects[i].title,
                     personnel:Response.data.projects[i].personnel,
                     day:diff,
-                    startDay:Response.data.project[i].startDay,
-                    endDay:Response.data.project[i].endDay
+                    startDay:Response.data.projects[i].startDay,
+                    endDay:Response.data.projects[i].endDay
                 };
                 project.push(temp);
             }
@@ -148,7 +148,7 @@ const Project = () => {
                             <Link to={`/admin/projectGet/${prop.no}`}>{prop.title}</Link>
                             </td>
                             <td>{prop.personnel}</td>
-                            <td className="text-right">{prop.startDay} ~ {prop.endDay}({prop.day} 일)</td>
+                            <td className="text-right">{prop.startDay} ~ {prop.endDay}  ({prop.day} 일)</td>
                         </tr>
                         );
                     })}

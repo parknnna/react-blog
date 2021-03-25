@@ -63,7 +63,7 @@ function Board(props){
                     }
                     {Object(board).url!==null &&
                         <div style={{textAlign:"right"}}>
-                            <Link onClick={()=>{window.open(Object(board).url2)}}>Github 페이지 이동</Link>
+                            <Link onClick={()=>{window.open(Object(board).url)}}>Github 페이지 이동</Link>
                         </div>
                     }
                     {Object(board).url2!==null &&
