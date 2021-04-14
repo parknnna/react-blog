@@ -68,7 +68,7 @@ function Board(props){
                     }
                     {Object(board).apk!==null &&
                         <div style={{textAlign:"right"}}>
-                            <a href={require(`./projects/blog.apk`)} download>Download Webpage HTML</a>
+                            <a href={require(`./projects/${Object(board).apk}`)} download>APK Download</a>
                         </div>
                     }
                     <br></br>

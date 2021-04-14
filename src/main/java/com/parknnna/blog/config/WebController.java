@@ -11,4 +11,9 @@ public class WebController implements ErrorController {
         return "index.html";
     }
 
+    @Override
+    public String getErrorPath(){
+        return "index.html";
+    }
+
 }
