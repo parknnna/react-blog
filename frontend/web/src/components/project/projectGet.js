@@ -10,14 +10,15 @@ import ADDelete from "../adDelete"
 
 function Board(props){
     const [inputs, setInputs] = useState({
-        board: ""
+        board: "",
+        file: ""
     });
 
     const goBack = () => {
         props.history.goBack();
     };
 
-    const { board } = inputs;
+    const { board,file } = inputs;
 
     useEffect(() => {
         getBoard();
@@ -26,9 +27,16 @@ function Board(props){
     const getBoard = () => {
         axios.get(`http://15.164.97.108:8080/project/`+props.match.params.no).then((Response)=>{
             console.log(Response)
-            setInputs({
-                board: Response.data.project
-            })
+            if(Response.data.project.apk!==null){
+                setInputs({
+                    board: Response.data.project,
+                    file: require(`./projects/${Response.data.project.apk}`)
+                })
+            }else{
+                setInputs({
+                    board: Response.data.project
+                })
+            }
           }).catch((Error)=>{
               console.log(Error);
           })
@@ -68,7 +76,7 @@ function Board(props){
                     }
                     {Object(board).apk!==null &&
                         <div style={{textAlign:"right"}}>
-                            <a href={require(`./projects/${Object(board).apk}`)} download>APK Download</a>
+                            <a href={file} download>APK Download</a>
                         </div>
                     }
                     <br></br>

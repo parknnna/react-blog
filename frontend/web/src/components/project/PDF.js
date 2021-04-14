@@ -31,7 +31,6 @@ function Board(props){
       fileUrl={require(`./projects/${props.match.params.file}`)}
       defaultScale={0.8}
       plugins={[
-        // Register plugins
         defaultLayoutPluginInstance
       ]}
       />
