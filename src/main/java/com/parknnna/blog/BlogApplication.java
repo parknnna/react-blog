@@ -18,7 +18,6 @@ public class BlogApplication {
         String ip;
 		try { local = InetAddress.getLocalHost(); 
 			ip = local.getHostAddress(); 
-			System.out.print(ip);
 		}catch (UnknownHostException e1) { e1.printStackTrace(); }
 	}
 

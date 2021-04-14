@@ -66,9 +66,9 @@ function Board(props){
                             <Link onClick={()=>{window.open(Object(board).url)}}>Github 페이지 이동</Link>
                         </div>
                     }
-                    {Object(board).url2!==null &&
+                    {Object(board).apk!==null &&
                         <div style={{textAlign:"right"}}>
-                            <Link onClick={()=>{window.open(Object(board).url2)}}>URL 이동({Object(board).url2})</Link>
+                            <a href={require(`./projects/blog.apk`)} download>Download Webpage HTML</a>
                         </div>
                     }
                     <br></br>

@@ -18,6 +18,6 @@ public class ProjectEntity{
     private String startDay;
     private String endDay;
     private String url;
-    private String url2;
+    private String apkString;
 }
 
