@@ -13,7 +13,10 @@ import PanelHeader from "components/PanelHeader/PanelHeader.js";
 var tt=2;
 class Dashboard extends React.Component {
   componentDidMount(){
+    this.typing()
+  }
 
+  typing(){
     var $typing = $("#typing");
     var text = $typing.text();
     $typing.html("");
@@ -24,33 +27,15 @@ class Dashboard extends React.Component {
         $("<span style='color:white'></span>").html(item).appendTo($typing);
     });
 
-     $("<span></span>").attr("id", "caret").css({
-        width: "0.4em",
-    }).appendTo($typing);
-
     var delayStart = 150;
-
     var speed = 100;
 
-    $typing.children(":not(#caret)").hide().each(function (index) {
+    $typing.children().hide().each(function (index) {
         var delay = delayStart + speed * index;
-        $(this).delay(delay).show(10);
+        $(this).delay(delay).show(1);
     });
-
-
   }
 
-  next(){
-    $('li[id^=m'+tt+']').show();
-    if(tt===2) tt=1;
-    else tt=2;
-    $('li[id^=m'+tt+']').hide();
-  }
-
-  fnMove(seq){
-    var offset = $("#div" + seq).offset();
-    $('html, body').animate({scrollTop : offset.top}, 400);
-  }
   render() {
     return (
       <>
@@ -62,13 +47,10 @@ class Dashboard extends React.Component {
         }
         />
         <div className="content">
- 
-            <User></User>
-        
+          <User></User> 
           <Row>
             <Skill></Skill>      
-          </Row>
-          
+          </Row>     
         </div>
       </>
     );
