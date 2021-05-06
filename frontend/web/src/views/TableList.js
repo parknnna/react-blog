@@ -118,7 +118,7 @@ class RegularTables extends React.Component {
                       {body&&body.map((prop, key) => {
                         return (
                           <tr key={key}>
-                            <td>{prop.no}</td>
+                            <td>{key+1}</td>
                             <td>
                               <Link to={`/admin/board/${prop.no}`}>{prop.title}</Link>
                             </td>

@@ -64,17 +64,17 @@ function Board(props){
                             <ADDelete no={props.match.params.no} table="project" prop={props}/>
                         </div>
                     }
-                    {Object(board).filename!==null &&
+                    {String(Object(board).filename).length>0 &&
                         <div style={{textAlign:"right"}}>
                             <Link to={`/admin/PDF/${Object(board).filename}`}>PDF 보기</Link>
                         </div>
                     }
-                    {Object(board).url!==null &&
+                    {String(Object(board).url).length>0 &&
                         <div style={{textAlign:"right"}}>
                             <Link onClick={()=>{window.open(Object(board).url)}}>Github 페이지 이동</Link>
                         </div>
                     }
-                    {Object(board).apk!==null &&
+                    {String(Object(board).apk).length>0&&Object(board).apk!=null &&
                         <div style={{textAlign:"right"}}>
                             <a href={file} download>APK Download</a>
                         </div>

@@ -1,7 +1,7 @@
 
 import React,{useState,useEffect} from "react";
 import { Link } from 'react-router-dom';
-
+import hoverStyle from "./hoverStyle.css"
 import {
   Card,
   CardBody,
@@ -14,6 +14,7 @@ import {
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import axios from 'axios';
 import '../../router'
+import { Popper } from "@material-ui/core";
 
 const ad = window.sessionStorage.getItem("ad")
 const thead = ['no','title','personnel','develop period']
@@ -21,10 +22,11 @@ const Project = () => {
     const [inputs, setInputs] = useState({
         body: "",  
         page: [],
-        day:""
+        day:"",
+        hover:false
     });
 
-    const { body, page } = inputs;
+    const { body, page, hover } = inputs;
 
     useEffect(() => {
         boardGet();
@@ -71,6 +73,20 @@ const Project = () => {
         }
         return result;
     }
+    const handleMouseHover = (no) => {
+        setInputs({
+            body: body,
+            page: page,
+            hover: no
+        })
+    }
+    const handleMouseleave = () => {
+        setInputs({
+            body: body,
+            page: page,
+            hover: -1
+        })
+    }
 
     const boardGet = () => {
         axios.get('http://15.164.97.108:8080/project/1/10').then((Response)=>{
@@ -79,13 +95,18 @@ const Project = () => {
                 var msDiff = new Date(Response.data.projects[i].endDay).getTime() - 
                     new Date(Response.data.projects[i].startDay).getTime();  
                 var diff = Math.floor(msDiff / (1000 * 60 * 60 * 24));
+                let tempString=Response.data.projects[i].contents;
+                if(tempString.length>50){
+                    tempString = String(tempString).substring(0,50)+"...";
+                }
                 let temp={
                     no:Response.data.projects[i].no,
                     title:Response.data.projects[i].title,
                     personnel:Response.data.projects[i].personnel,
                     day:diff,
                     startDay:Response.data.projects[i].startDay,
-                    endDay:Response.data.projects[i].endDay
+                    endDay:Response.data.projects[i].endDay,
+                    contents: tempString
                 };
                 project.push(temp);
             }
@@ -143,9 +164,15 @@ const Project = () => {
                     {body&&body.map((prop, key) => {
                         return (
                         <tr key={key}>
-                            <td>{prop.no}</td>
+                            <td>{key+1}</td>
                             <td>
-                            <Link to={`/admin/projectGet/${prop.no}`}>{prop.title}</Link>
+                            <Link to={`/admin/projectGet/${prop.no}`} 
+                                onMouseEnter={()=>handleMouseHover(prop.no)}
+                                onMouseLeave={()=>handleMouseleave()}
+                            >{prop.title}</Link>
+                            {prop.no === hover &&
+                                <div class="hover">{prop.contents}</div> 
+                            }
                             </td>
                             <td>{prop.personnel}</td>
                             <td className="text-right">{prop.startDay} ~ {prop.endDay}  ({prop.day} 일)</td>
