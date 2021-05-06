@@ -4,8 +4,8 @@ import React from "react";
 
 import "assets/css/icon.css"
 
-import {ajax_,css3_,github_,html5_,java_,jquery_,js_
-  ,maria_,mybatis_,node_,oracle_,python_,spring_,springboot_,c_
+import {ajax_,css3_,github_,html5_,java_,jquery_,js_,mysql_
+  ,maria_,mybatis_,node_,oracle_,python_,spring_,springboot_,c_,React_
 } from "../assets/img/icon/icon"
 
 
@@ -48,13 +48,15 @@ function Skill(){
                   <div><h3>Data Base</h3></div>
                   <Row>&nbsp;&nbsp;&nbsp;
                     <div class="Skill_image_container" style={{backgroundImage: `url(${maria_})`}}><div class="Skill_label">MariaDB</div></div>
+                    <div class="Skill_image_container" style={{backgroundImage: `url(${mysql_})`}}><div class="Skill_label">mysql</div></div>
                     <div class="Skill_image_container" style={{backgroundImage: `url(${oracle_})`}}><div class="Skill_label">Oracle</div></div>
                   </Row>
-                  <div><h3>Frame Work</h3></div>
+                  <div><h3>Frame Work & Library</h3></div>
                   <Row>&nbsp;&nbsp;&nbsp;
                     <div class="Skill_image_container" style={{backgroundImage: `url(${spring_})`}}><div class="Skill_label">Spring</div></div>
                     <div class="Skill_image_container" style={{backgroundImage: `url(${springboot_})`}}><div class="Skill_label">SpringBoot</div></div>
                     <div class="Skill_image_container" style={{backgroundImage: `url(${node_})`}}><div class="Skill_label">Node.JS</div></div>
+                    <div class="Skill_image_container" style={{backgroundImage: `url(${React_})`}}><div class="Skill_label">React.JS</div></div>
                   </Row>
                   <div><h3>ETC</h3></div>
                   <Row>&nbsp;&nbsp;&nbsp;

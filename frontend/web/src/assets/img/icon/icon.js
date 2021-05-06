@@ -13,6 +13,8 @@ import oracle from "./oracle.jpg"
 import python from "./python.jpg"
 import spring from "./spring.jpg"
 import springboot from "./springboot.jpg"
+import React from "./react.png"
+import mysql from "./mysql.png"
 
 export const c_ = c;
 export const ajax_ = ajax;
@@ -29,3 +31,5 @@ export const oracle_ = oracle;
 export const python_ = python;
 export const spring_ = spring;
 export const springboot_ = springboot;
+export const React_ = React;
+export const mysql_ = mysql;
