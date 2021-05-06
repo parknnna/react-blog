@@ -3,7 +3,7 @@
 
 <mapper namespace="com.parknnna.blog.database.Mapper.ProjectMapper">
     <insert id="insert">
-        insert into project values (null,#{title},#{personnel},#{contents},#{filename},#{startDay},#{endDay})
+        insert into project values (null,#{title},#{personnel},#{contents},#{filename},#{startDay},#{endDay},#{url},#{apk})
     </insert>
 
     <select id="count" resultType="int">
