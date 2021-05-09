@@ -1,25 +1,7 @@
-/*!
-
-=========================================================
-* Now UI Dashboard React - v1.4.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/now-ui-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
-// react plugin for creating notifications over the dashboard
 import NotificationAlert from "react-notification-alert";
 
-// reactstrap components
+import "./css/storyBoard.css";
 import {
   Alert,
   Card,
@@ -29,10 +11,9 @@ import {
   Row,
   Col
 } from "reactstrap";
-// core components
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
-import axios from 'axios'
+import axios from 'axios';
 
 class License extends React.Component {
   constructor(props) {
@@ -46,10 +27,10 @@ class License extends React.Component {
   }
 
   story = () =>{
-    axios.get('http://15.164.97.108:8080/story/1/10').then((Response)=>{
-      console.log(Response)
+    axios.get('http://15.164.97.108:8080/story/1/10').then((res)=>{
+      console.log(res)
       this.setState({
-        story: Response.data.story,
+        story: res.data.story,
       })
     }).catch((Error)=>{
         console.log(Error);
@@ -59,12 +40,12 @@ class License extends React.Component {
  
 
   render() {
-      var ad = window.sessionStorage.getItem("ad")
+    var ad = window.sessionStorage.getItem("ad")
     function importAll(r) {
-        let images = {};
-        r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-        return images;
-      }
+      let images = {};
+      r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+      return images;
+    }
       
     const images = importAll(require.context('./myimg', false, /\.(png|jpe?g|svg)$/));
       
@@ -93,8 +74,18 @@ class License extends React.Component {
                         </CardHeader>
                         <CardBody>
                         <Alert color="info">
-                        <img src={images[`${Object(i).filename}`]} width="310" height="310"/>
-                        <div style={{textAlign: "right"}}>날짜 : {i.day}</div>
+                          <div class="board">
+                            {String(Object(i).filename).split("/").length>1 ?
+                              <div>
+                                <img src={images[`${String(Object(i).filename).split("/")[0]}`]} width="310" height="310"/>
+                                <div class="text"><span style = {{fontSize:"1.5em",  color: "black"}}>+{String(Object(i).filename).split("/").length-1}</span></div>
+                              </div>:
+                              <div class="board-img">
+                                <img src={images[`${Object(i).filename}`]} width="310" height="310"/>
+                              </div>
+                            }
+                          </div>
+                          <div style={{textAlign: "right"}}>날짜 : {i.day}</div>
                         </Alert>
                         </CardBody>
                     </Card>
