@@ -72,17 +72,15 @@ function Board(props){
                     {String(Object(board).filename).split("/").length>1 ?
                           <div class="slide-container">
                           <Fade>
-                            <div className="each-fade">
-                              <div className="image-container">
-                                <img src={slides[0]} />
-                              </div>
-                            </div>
-                            <div className="each-fade">
-                              <div className="image-container">
-                                <img src={slides[1]} />
-                              </div>
-                            </div>
-                        
+                              {slides&&slides.map((i,k)=>{
+                                  return(
+                                    <div className="each-fade">
+                                        <div className="image-container" key={k}>
+                                            <img src={i}/>
+                                        </div>
+                                    </div>
+                                  )
+                              })}
                           </Fade>
                         </div>
                         :

@@ -3,6 +3,7 @@ package com.parknnna.blog.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,15 +23,21 @@ public class StoryController {
 	private StoryService storyService;
 
 	@PostMapping("/storyfile")
-    public int fileup( @RequestParam("file") MultipartFile file) {
-		String filePath = "C:/react-blog/frontend/web/src/components/story/myimg";
-
-		File target = new File(filePath, file.getOriginalFilename());
-		try {
-            file.transferTo(target);
-        } catch (IOException e) {
-            System.out.println(e);
+    public int fileup( MultipartHttpServletRequest mtfRequest) {
+        List<MultipartFile> fileList = mtfRequest.getFiles("file");
+        String filePath = "C:/react-blog/frontend/web/src/components/story/myimg";
+    
+        for (MultipartFile mf : fileList) {
+            File target = new File(filePath, mf.getOriginalFilename());
+            try {
+                mf.transferTo(target);
+            } catch (IOException e) {
+                System.out.println(e);
+            }
         }
+
+
+		
 		return 0;
 	}
 

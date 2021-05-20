@@ -19,7 +19,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-//value를 통해 값이 있는 위치를 명시해준다.
 @PropertySource(value = "classpath:application.yml")
 @ConfigurationProperties(prefix = "upload")
 @RestController
@@ -43,7 +42,7 @@ public class ProjectController {
         } catch (IOException e) {
             System.out.println(e);
         }
-		return 0;
+		return 0; 
 	}
 
 	@PostMapping("/project")

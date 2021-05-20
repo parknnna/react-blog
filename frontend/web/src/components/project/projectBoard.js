@@ -1,7 +1,6 @@
 
 import React,{useState,useEffect} from "react";
 import { Link } from 'react-router-dom';
-import hoverStyle from "./hoverStyle.css"
 import {
   Card,
   CardBody,
@@ -14,7 +13,6 @@ import {
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import axios from 'axios';
 import '../../router'
-import { Popper } from "@material-ui/core";
 
 const ad = window.sessionStorage.getItem("ad")
 const thead = ['no','title','personnel','develop period']

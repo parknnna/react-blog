@@ -19,13 +19,14 @@ import {Link} from "react-router-dom"
 
 
 function Insert ({history}) {
-    const file = new FormData();
+    // const file = new FormData();
     const [inputs, setInputs] = useState({  
         title: "",
         contents: "",
+        file: new FormData()
     })
     const { title,
-        contents,} = inputs  
+        contents,file} = inputs  
 
     const goBack = () => {
         history.goBack();
@@ -37,7 +38,7 @@ function Insert ({history}) {
             contents: contents,
             filename: "",
         }
-        if(file.get("file")){
+        if(file!==null){
             axios.post('http://15.164.97.108:8080/storyfile',file,{"content-type": "multipart/form-data;charset=UTF-8"})
             .then((Response)=>{
             }).catch((Error)=>{
@@ -58,8 +59,8 @@ function Insert ({history}) {
     }
 
     const fileChangedHandler = (e) =>{
-        console.log(e.target.files[0])
-        file.append("file",e.target.files[0])
+        console.log(e.target.files)
+        setInputs({file:e.target.files})
     }
     
 
@@ -113,7 +114,8 @@ function Insert ({history}) {
                 <Col className="pr-1" md="9">
                         <FormGroup>
                             <label>이미지</label>
-                            <input                               
+                            <input        
+                                multiple="multiple"                       
                                 placeholder="file"
                                 rows="10" name="filename"
                                 type="file" onChange={fileChangedHandler} id="file" 
